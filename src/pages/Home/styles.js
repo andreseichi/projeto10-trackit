@@ -46,6 +46,10 @@ export const Input = styled.input`
   & + Input {
     margin-top: 6px;
   }
+
+  :disabled {
+    background: #f2f2f2;
+  }
 `;
 
 export const Button = styled.button`

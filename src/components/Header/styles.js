@@ -26,4 +26,6 @@ export const UserPicture = styled.img`
   border: 100%;
   width: 52px;
   height: 52px;
+
+  border-radius: 100%;
 `;
