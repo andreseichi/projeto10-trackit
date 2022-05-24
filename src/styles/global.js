@@ -22,8 +22,15 @@ export const GlobalStyle = createGlobalStyle`
     display: inline-block;
   }
 
-  h1,h2,h3,h4,h5,h6 {
-    font-family: 'Lexend Deca', sans-serif;
+  h1 {
+    font-family: 'Playball', cursive;
+  }
 
+  h2,h3,h4,h5,h6 {
+    font-family: 'Lexend Deca', sans-serif;
+  }
+
+  input, button {
+    font-family: 'Lexend Deca', sans-serif;
   }
 `;

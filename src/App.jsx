@@ -1,13 +1,16 @@
-import { ThreeDots } from 'react-loader-spinner';
+import { Routes, Route } from 'react-router-dom';
+
+import { Home } from './pages/Home';
+
 import { GlobalStyle } from './styles/global';
 
 export function App() {
   return (
     <>
       <GlobalStyle />
-      <h1>hello world</h1>
-
-      <ThreeDots />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
   );
 }
