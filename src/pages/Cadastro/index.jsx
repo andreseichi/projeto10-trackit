@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../../hooks/useUser';
+import axios from 'axios';
+
+import { ThreeDots } from 'react-loader-spinner';
 
 import { Container, Image, Form, Input, Button, LinkStyled } from './styles';
 
@@ -13,8 +15,7 @@ export function Cadastro() {
     password: '',
     image: '',
   });
-
-  const { setUser } = useUser();
+  const [isLoading, setIsloading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -27,15 +28,24 @@ export function Cadastro() {
 
   function submitForm(event) {
     event.preventDefault();
-    setUser(inputs);
 
-    navigate('/hoje');
+    setIsloading(true);
 
-    // TODO
-    // realizar post com o objeto de cadastro
-    // desabilitar os inputs
-    // redirecionar pra rota / se sucesso
-    // se falha, mostrar alerta e habilitar os inputs
+    axios
+      .post(
+        'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up',
+        inputs
+      )
+      .then((response) => {
+        if (response.status === 201) {
+          console.log('cadastrado');
+          navigate('/');
+        }
+      })
+      .catch((error) => {
+        alert(error.response.data.message);
+        setIsloading(false);
+      });
   }
 
   return (
@@ -50,6 +60,7 @@ export function Cadastro() {
           onChange={handleForm}
           value={inputs.email}
           required
+          disabled={isLoading}
         />
         <Input
           placeholder="senha"
@@ -58,6 +69,7 @@ export function Cadastro() {
           onChange={handleForm}
           value={inputs.password}
           required
+          disabled={isLoading}
         />
         <Input
           placeholder="nome"
@@ -66,6 +78,7 @@ export function Cadastro() {
           onChange={handleForm}
           value={inputs.name}
           required
+          disabled={isLoading}
         />
         <Input
           placeholder="foto"
@@ -74,9 +87,12 @@ export function Cadastro() {
           onChange={handleForm}
           value={inputs.image}
           required
+          disabled={isLoading}
         />
 
-        <Button onSubmit={(event) => submitForm(event)}>Cadastrar</Button>
+        <Button onSubmit={(event) => submitForm(event)} disabled={isLoading}>
+          {isLoading ? <ThreeDots height="auto" color="#fff" /> : 'Cadastrar'}
+        </Button>
       </Form>
 
       <LinkStyled to="/">Já tem uma conta? Faça login!</LinkStyled>
