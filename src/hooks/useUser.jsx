@@ -4,9 +4,10 @@ const UserContext = createContext({});
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState({ user: 'tashiro' });
+  const [habitoPorcentagem, setHabitoPorcentagem] = useState(66);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, habitoPorcentagem }}>
       {children}
     </UserContext.Provider>
   );

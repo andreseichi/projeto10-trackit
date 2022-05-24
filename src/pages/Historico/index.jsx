@@ -3,11 +3,11 @@ import { Footer } from '../../components/Footer';
 
 import { Container } from './styles';
 
-export function Hoje() {
+export function Historico() {
   return (
     <Container>
       <Header />
-      <h1>hoje</h1>
+      <h1>historico</h1>
       <Footer />
     </Container>
   );
