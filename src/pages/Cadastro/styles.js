@@ -25,6 +25,8 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+
+  margin-top: 32px;
 `;
 
 export const Input = styled.input`
@@ -43,6 +45,10 @@ export const Input = styled.input`
 
   & + Input {
     margin-top: 6px;
+  }
+
+  :disabled {
+    background: #f2f2f2;
   }
 `;
 
