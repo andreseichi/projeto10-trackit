@@ -50,6 +50,7 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   width: 100%;
+  height: 45px;
   background: #52b6ff;
   border-radius: 4.63636px;
   border: none;
@@ -61,6 +62,14 @@ export const Button = styled.button`
   margin-top: 6px;
 
   padding: 9px 11px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: ${({ disabled }) => (disabled ? '0.6' : '1')};
+
+  cursor: pointer;
 `;
 
 export const LinkStyled = styled(Link)`
