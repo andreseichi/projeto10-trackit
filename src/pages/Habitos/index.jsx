@@ -162,24 +162,31 @@ export function Habitos() {
             <Days>
               <Day
                 handleDaySelect={handleDaySelect}
-                id={1}
+                id={7}
                 disabled={isLoading}
               >
                 D
               </Day>
               <Day
                 handleDaySelect={handleDaySelect}
-                id={2}
+                id={1}
                 disabled={isLoading}
               >
                 S
               </Day>
               <Day
                 handleDaySelect={handleDaySelect}
-                id={3}
+                id={2}
                 disabled={isLoading}
               >
                 T
+              </Day>
+              <Day
+                handleDaySelect={handleDaySelect}
+                id={3}
+                disabled={isLoading}
+              >
+                Q
               </Day>
               <Day
                 handleDaySelect={handleDaySelect}
@@ -193,18 +200,11 @@ export function Habitos() {
                 id={5}
                 disabled={isLoading}
               >
-                Q
-              </Day>
-              <Day
-                handleDaySelect={handleDaySelect}
-                id={6}
-                disabled={isLoading}
-              >
                 S
               </Day>
               <Day
                 handleDaySelect={handleDaySelect}
-                id={7}
+                id={6}
                 disabled={isLoading}
               >
                 S
