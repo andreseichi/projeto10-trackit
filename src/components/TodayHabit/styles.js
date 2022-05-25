@@ -31,7 +31,16 @@ export const Heading = styled.h3`
 export const Span = styled.span`
   font-size: 13px;
   line-height: 16px;
-  color: #666666;
+  display: inline;
+  color: ${({ isDone }) => (isDone ? '#8FC549' : '#666666')};
+`;
+
+export const SpanSequence = styled(Span)`
+  color: ${({ isDone }) => (isDone ? '#8FC549' : '#666666')};
+`;
+
+export const SpanRecord = styled(Span)`
+  color: ${({ isNewRecord }) => (isNewRecord ? '#8FC549' : '#666666')};
 `;
 
 export const CheckButton = styled.button`

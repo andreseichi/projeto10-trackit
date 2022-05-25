@@ -28,9 +28,6 @@ export function Hoje() {
     getTodayHabits();
   }, []);
 
-  // TODO
-  // logica das sequencias e recorde
-
   return (
     <Container>
       <Header />
