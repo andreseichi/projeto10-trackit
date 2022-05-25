@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useUser } from '../../hooks/useUser';
@@ -5,7 +7,11 @@ import { useUser } from '../../hooks/useUser';
 import { Container, StyledLink, StyledProgress } from './styles';
 
 export function Footer() {
-  const { habitsPercentage } = useUser();
+  const { habitsPercentage, getTodayHabits } = useUser();
+
+  useEffect(() => {
+    getTodayHabits();
+  }, []);
 
   return (
     <Container>

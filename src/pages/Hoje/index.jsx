@@ -20,13 +20,9 @@ import {
 } from './styles';
 
 export function Hoje() {
-  const { todayHabits, getTodayHabits, habitsPercentage } = useUser();
+  const { todayHabits, habitsPercentage } = useUser();
 
   const data = dayjs().locale(locale).format('dddd, DD/MM');
-
-  useEffect(() => {
-    getTodayHabits();
-  }, []);
 
   return (
     <Container>
