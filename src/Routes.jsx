@@ -5,6 +5,7 @@ import { Cadastro } from './pages/Cadastro';
 import { Hoje } from './pages/Hoje';
 import { Habitos } from './pages/Habitos';
 import { Historico } from './pages/Historico';
+import { NotFound } from './pages/NotFound';
 
 export function Routes() {
   return (
@@ -14,6 +15,7 @@ export function Routes() {
       <Route path="/hoje" element={<Hoje />} />
       <Route path="/habitos" element={<Habitos />} />
       <Route path="/historico" element={<Historico />} />
+      <Route path="*" element={<NotFound />} />
     </Router>
   );
 }
