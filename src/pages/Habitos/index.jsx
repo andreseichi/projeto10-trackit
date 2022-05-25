@@ -112,6 +112,33 @@ export function Habitos() {
       });
   }
 
+  function excludeHabit(id) {
+    const confirmExclude = window.confirm(`Você quer mesmo remover ?`);
+
+    if (confirmExclude) {
+      console.log('vc tentou excluir');
+
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      };
+
+      api
+        .delete(`habits/${id}`, config)
+        .then((response) => {
+          if (response.status === 204) {
+            const habitsFiltered = habits.filter(
+              (idHabit) => idHabit.id !== id
+            );
+            setHabits(habitsFiltered);
+          }
+        })
+        .catch((error) => console.log(error));
+    }
+  }
+
   return (
     <Container>
       <Header />
@@ -205,7 +232,6 @@ export function Habitos() {
         )}
 
         <Habits>
-          {console.log(habits)}
           {habits.length ? (
             habits.map((habit) => (
               <Habito
@@ -213,6 +239,7 @@ export function Habitos() {
                 name={habit.name}
                 id={habit.id}
                 daysId={habit.days}
+                excludeHabit={excludeHabit}
               />
             ))
           ) : (

@@ -2,10 +2,10 @@ import Image from '../../assets/trash.svg';
 
 import { Container, Heading, Days, DayDisplay, ExcludeIcon } from './styles';
 
-export function Habito({ name, id, daysId }) {
+export function Habito({ name, id, daysId, excludeHabit }) {
   return (
     <Container>
-      <ExcludeIcon src={Image} />
+      <ExcludeIcon src={Image} onClick={() => excludeHabit(id)} />
       <Heading>
         {name} {id} {daysId}
       </Heading>
