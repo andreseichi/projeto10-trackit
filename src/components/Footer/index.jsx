@@ -5,7 +5,7 @@ import { useUser } from '../../hooks/useUser';
 import { Container, StyledLink, StyledProgress } from './styles';
 
 export function Footer() {
-  const { habitoPorcentagem } = useUser();
+  const { habitsPercentage } = useUser();
 
   return (
     <Container>
@@ -16,7 +16,7 @@ export function Footer() {
             text="Hoje"
             background
             backgroundPadding={6}
-            value={habitoPorcentagem}
+            value={habitsPercentage}
             styles={buildStyles({
               strokeLinecap: 'round',
               // How long animation takes to go from one percentage to another, in seconds

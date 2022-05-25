@@ -40,6 +40,10 @@ export const Text = styled.span`
   color: #bababa;
 `;
 
+export const TextHabitsDone = styled(Text)`
+  color: #8fc549;
+`;
+
 export const HabitsContainer = styled.div`
   width: 100%;
 

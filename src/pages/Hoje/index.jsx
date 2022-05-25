@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import dayjs from 'dayjs';
 import locale from 'dayjs/locale/pt-br';
 
 import { api } from '../../services/api';
+
+import { useUser } from '../../hooks/useUser';
 
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -15,11 +17,12 @@ import {
   TodayHeader,
   Title,
   Text,
+  TextHabitsDone,
   HabitsContainer,
 } from './styles';
 
 export function Hoje() {
-  const [todayHabits, setTodayHabits] = useState([]);
+  const { todayHabits, getTodayHabits, habitsPercentage } = useUser();
 
   const data = dayjs().locale(locale).format('dddd, DD/MM');
 
@@ -33,13 +36,17 @@ export function Hoje() {
 
     api.get('habits/today', config).then((response) => {
       if (response.status === 200) {
-        console.log(response);
-
         const { data } = response;
-        setTodayHabits(data);
+        getTodayHabits(data);
       }
     });
   }, []);
+
+  // TODO
+  // no subtitulo deixar nenhum habito concluido ou x% concluido
+  // fazer post sempre q marcar ou desmarcar habito feito
+  // logica das sequencias e recorde
+  // integrar com o footer a porcentagem
 
   return (
     <Container>
@@ -47,7 +54,13 @@ export function Hoje() {
       <Content>
         <TodayHeader>
           <Title>{data}</Title>
-          <Text>Nenhum hábito concluído ainda</Text>
+          {habitsPercentage > 0 ? (
+            <TextHabitsDone>
+              {habitsPercentage}% dos hábitos concluídos
+            </TextHabitsDone>
+          ) : (
+            <Text>Nenhum hábito concluído ainda</Text>
+          )}
         </TodayHeader>
 
         <HabitsContainer>
