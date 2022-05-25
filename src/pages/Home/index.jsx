@@ -40,8 +40,6 @@ export function Home() {
       )
       .then((response) => {
         if (response.status === 200) {
-          console.log('logado com sucesso');
-          console.log(response.data);
           const { token, name, image } = response.data;
           const user = {
             name,

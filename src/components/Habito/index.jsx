@@ -6,9 +6,7 @@ export function Habito({ name, id, daysId, excludeHabit }) {
   return (
     <Container>
       <ExcludeIcon src={Image} onClick={() => excludeHabit(id)} />
-      <Heading>
-        {name} {id} {daysId}
-      </Heading>
+      <Heading>{name}</Heading>
       <Days>
         <DayDisplay daysId={daysId} id={1}>
           D

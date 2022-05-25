@@ -43,8 +43,6 @@ export function UserProvider({ children }) {
   }
 
   function checkHabit(id, isDone) {
-    console.log('clicou', id, isDone);
-
     const token = localStorage.getItem('token');
     const config = {
       headers: {
@@ -53,21 +51,25 @@ export function UserProvider({ children }) {
     };
 
     if (isDone) {
-      api.post(`habits/${id}/uncheck`, null, config).then((response) => {
-        if (response.status === 204) {
-          console.log(response);
-          getTodayHabits();
-          return;
-        }
-      });
+      api
+        .post(`habits/${id}/uncheck`, null, config)
+        .then((response) => {
+          if (response.status === 204) {
+            getTodayHabits();
+            return;
+          }
+        })
+        .catch((error) => console.log(error));
     } else {
-      api.post(`habits/${id}/check`, null, config).then((response) => {
-        if (response.status === 204) {
-          console.log(response);
-          getTodayHabits();
-          return;
-        }
-      });
+      api
+        .post(`habits/${id}/check`, null, config)
+        .then((response) => {
+          if (response.status === 204) {
+            getTodayHabits();
+            return;
+          }
+        })
+        .catch((error) => console.log(error));
     }
   }
 
