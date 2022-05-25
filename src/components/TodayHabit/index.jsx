@@ -1,14 +1,19 @@
 import { useState } from 'react';
 
+import { useUser } from '../../hooks/useUser';
+
 import Image from '../../assets/check.svg';
 
 import { Container, Content, Heading, Span, CheckButton } from './styles';
 
-export function TodayHabit({ name, done, currentSequence, record }) {
+export function TodayHabit({ id, name, done, currentSequence, record }) {
   const [isDone, setIsDone] = useState(done);
+
+  const { checkHabit } = useUser();
 
   function handleCheckHabit() {
     setIsDone(!isDone);
+    checkHabit(id, isDone);
   }
 
   return (

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { api } from '../services/api';
 
 const UserContext = createContext({});
 
@@ -11,16 +12,21 @@ export function UserProvider({ children }) {
     setUser({ name: inputs.name, image: inputs.image });
   }
 
-  function getTodayHabits(habits) {
-    setTodayHabits(habits);
+  function getTodayHabits() {
+    const token = localStorage.getItem('token');
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    };
 
-    getHabitsPercentage([
-      ...habits,
-      { done: true },
-      { done: true },
-      { done: true },
-      { done: true },
-    ]);
+    api.get('habits/today', config).then((response) => {
+      if (response.status === 200) {
+        const { data } = response;
+        setTodayHabits(data);
+        getHabitsPercentage(data);
+      }
+    });
   }
 
   function getHabitsPercentage(habits) {
@@ -31,9 +37,38 @@ export function UserProvider({ children }) {
     );
 
     const percentageHabitsDone = parseFloat(
-      ((todayHabitsDone * 100) / todayHabitsTotal).toFixed(2)
+      ((todayHabitsDone * 100) / todayHabitsTotal).toFixed(0)
     );
     setHabitsPercentage(percentageHabitsDone);
+  }
+
+  function checkHabit(id, isDone) {
+    console.log('clicou', id, isDone);
+
+    const token = localStorage.getItem('token');
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    };
+
+    if (isDone) {
+      api.post(`habits/${id}/uncheck`, null, config).then((response) => {
+        if (response.status === 204) {
+          console.log(response);
+          getTodayHabits();
+          return;
+        }
+      });
+    } else {
+      api.post(`habits/${id}/check`, null, config).then((response) => {
+        if (response.status === 204) {
+          console.log(response);
+          getTodayHabits();
+          return;
+        }
+      });
+    }
   }
 
   return (
@@ -44,6 +79,7 @@ export function UserProvider({ children }) {
         habitsPercentage,
         todayHabits,
         getTodayHabits,
+        checkHabit,
       }}
     >
       {children}
