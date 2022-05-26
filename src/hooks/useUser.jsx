@@ -1,15 +1,38 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { api } from '../services/api';
 
 const UserContext = createContext({});
 
 export function UserProvider({ children }) {
-  const [user, setUser] = useState({ user: 'tashiro' });
+  const [user, setUser] = useState({ user: '', image: '' });
   const [habitsPercentage, setHabitsPercentage] = useState(0);
   const [todayHabits, setTodayHabits] = useState([]);
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log('rodei');
+    const user = localStorage.getItem('user');
+    if (user !== null) {
+      const userObject = JSON.parse(user);
+      setUser(userObject);
+      navigate('/hoje');
+
+      return;
+    }
+
+    navigate('/');
+  }, []);
+
   function loginUser(inputs) {
-    setUser({ name: inputs.name, image: inputs.image });
+    const userObject = {
+      name: inputs.name,
+      image: inputs.image,
+    };
+    setUser(userObject);
+    const userJSON = JSON.stringify(userObject);
+    localStorage.setItem('user', userJSON);
   }
 
   function getTodayHabits() {
