@@ -38,7 +38,6 @@ export function Cadastro() {
       )
       .then((response) => {
         if (response.status === 201) {
-          console.log('cadastrado');
           navigate('/');
         }
       })

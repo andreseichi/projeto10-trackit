@@ -12,7 +12,6 @@ export function UserProvider({ children }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('rodei');
     const user = localStorage.getItem('user');
     if (user !== null) {
       const userObject = JSON.parse(user);

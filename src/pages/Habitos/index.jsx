@@ -116,8 +116,6 @@ export function Habitos() {
     const confirmExclude = window.confirm(`Você quer mesmo remover ?`);
 
     if (confirmExclude) {
-      console.log('vc tentou excluir');
-
       const token = localStorage.getItem('token');
       const config = {
         headers: {
