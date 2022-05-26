@@ -5,6 +5,8 @@ export const Container = styled.div`
   min-height: 100vh;
 
   background-color: #f2f2f2;
+
+  padding-bottom: 120px;
 `;
 
 export const Content = styled.section`

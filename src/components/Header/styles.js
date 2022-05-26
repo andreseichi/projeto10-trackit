@@ -13,6 +13,7 @@ export const Container = styled.header`
   right: 0;
 
   background-color: #126ba5;
+  z-index: 10;
 `;
 
 export const Heading = styled.h1`
