@@ -160,7 +160,7 @@ export function Habitos() {
             <Days>
               <Day
                 handleDaySelect={handleDaySelect}
-                id={7}
+                id={0}
                 disabled={isLoading}
               >
                 D

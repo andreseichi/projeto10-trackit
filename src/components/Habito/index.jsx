@@ -8,25 +8,25 @@ export function Habito({ name, id, daysId, excludeHabit }) {
       <ExcludeIcon src={Image} onClick={() => excludeHabit(id)} />
       <Heading>{name}</Heading>
       <Days>
-        <DayDisplay daysId={daysId} id={1}>
+        <DayDisplay daysId={daysId} id={0}>
           D
         </DayDisplay>
-        <DayDisplay daysId={daysId} id={2}>
+        <DayDisplay daysId={daysId} id={1}>
           S
         </DayDisplay>
-        <DayDisplay daysId={daysId} id={3}>
+        <DayDisplay daysId={daysId} id={2}>
           T
+        </DayDisplay>
+        <DayDisplay daysId={daysId} id={3}>
+          Q
         </DayDisplay>
         <DayDisplay daysId={daysId} id={4}>
           Q
         </DayDisplay>
         <DayDisplay daysId={daysId} id={5}>
-          Q
-        </DayDisplay>
-        <DayDisplay daysId={daysId} id={6}>
           S
         </DayDisplay>
-        <DayDisplay daysId={daysId} id={7}>
+        <DayDisplay daysId={daysId} id={6}>
           S
         </DayDisplay>
       </Days>
